@@ -1,0 +1,71 @@
+<div class="col-lg-5 mx-lg-auto card shadow mt-5">
+  <div class="card-header">
+    <h3 class="card-title text-center">FRIVE FORM</h3>
+  </div>
+<div class="card-body">
+
+
+<%= form_with method: :post, url:create_detail_path(current_user.id)  do |form| %>
+
+
+<div class="form-group mb-2">
+<%= form.label :"10TH"%><br>
+ <%= form.text_field :ten , class: "form-control form-control-lg"%>
+</div>
+
+
+<div class="form-group mb-2">
+  <%= form.label :Year_of_passing %><br>
+   <%= form.text_field :year , class: "form-control form-control-lg"%>
+</div>
+
+<div class="form-group mb-2">
+  <%= form.label :percentage %><br> 
+   <%= form.text_field :percentage , class: "form-control form-control-lg"%>
+</div>
+
+
+<div class="form-group mb-2">
+  <%= form.label :"12TH"%><br>
+   <%= form.text_field :twelth , class: "form-control form-control-lg"%>
+  </div>
+
+  <div class="form-group mb-2">
+    <%= form.label :Year_of_passing%><br>
+     <%= form.text_field :year1 , class: "form-control form-control-lg"%>
+  </div>  
+ 
+  <div class="form-group mb-2">
+    <%= form.label :percentage %><br>
+     <%= form.text_field :percentage1 , class: "form-control form-control-lg"%>
+  </div>
+
+  <div class="form-group mb-2">
+    <%= form.label :Digree%><br>
+     <%= form.text_field :digree , class: "form-control form-control-lg"%>
+    </div>
+    
+    <div class="form-group mb-2">
+      <%= form.label :Year_of_passing %><br>
+       <%= form.text_field :year2 , class: "form-control form-control-lg"%>
+    </div>
+    
+    <div class="form-group mb-2">
+      <%= form.label :percentage %><br>
+       <%= form.text_field :percentage2 , class: "form-control form-control-lg"%>
+    </div>
+
+    <div class="form-group mb-2">
+      <%= form.label :Drive_date %><br>
+       <%= form.text_field :date, class: "form-control form-control-lg"%>
+    </div>
+
+ 
+
+  
+<%= form.submit "Press" %>
+</div>
+<% end %>
+
+</div>
+</div>

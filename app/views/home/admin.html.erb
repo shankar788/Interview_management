@@ -1,0 +1,20 @@
+
+
+<%ar=[]%>
+
+
+
+
+<% @drive.each do |i|%>
+  <% unless ar.include?(i.date) %> 
+    <%ar.push(i.date)%>
+ 
+   <%end%>
+<% end %>
+
+
+<% ar.each do |i|%>
+<%= link_to "Drive #{(ar.index(i)+1)}", detail_path(i) %><br>
+<% end %>
+
+
