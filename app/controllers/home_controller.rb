@@ -5,15 +5,19 @@ class HomeController < ApplicationController
         redirect_to candidate_path 
       elsif current_user.role == "admin"
         redirect_to admin_path
+      elsif current_user.role == "interviewer"
+        redirect_to interviewer_path
       end
-      redirect_to interviewer_path
     end  
   end
 
   def candidate
-
+  # ssas
   end  
   def interviewer
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
 
   end  
  
