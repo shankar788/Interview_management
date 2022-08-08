@@ -12,7 +12,7 @@ class HomeController < ApplicationController
   end
 
   def candidate
-  # ssas
+  # ssaasass
   end  
   def interviewer
     unless user_signed_in?
