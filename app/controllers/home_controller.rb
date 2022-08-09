@@ -91,5 +91,13 @@ class HomeController < ApplicationController
 
 
   end  
+
+
+  def track
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+    @user = User.find(params[:id])   
+  end  
     
 end

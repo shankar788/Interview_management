@@ -1,0 +1,29 @@
+<p>First Round</p>
+<% if @user.first?%>
+ <%= @user.first%>
+ <%else%>
+  <%= "Not cleared"%>
+ <%end%>
+<br><br><br>
+ <p>Second Round</p>
+<% if @user.second?%>
+ <%= @user.second%>
+ <%else%>
+  <%= "Not cleared"%> 
+ <%end%>
+<br><br><br>
+
+ <p>Third Round</p>
+<% if @user.third?%>
+ <%= @user.third%>
+ <%else%>
+  <%= "Not cleared"%>
+ <%end%>
+ <br><br><br>
+
+ <p>Interviewer name</p>
+ <% if @user.inter?%>
+  <%= @user.inter%>
+  <%else%>
+   <%= "Not cleared"%>
+  <%end%>

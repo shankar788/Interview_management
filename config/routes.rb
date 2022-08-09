@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post "updatedata/:id", to: "home#updatedata",as: :updatedata
   get "interviewer", to: "home#interviewer", as: :interviewer
   get "all_user_list", to: "home#all_user_list", as: :all_user_list
+  get "track/:id" , to: "home#track", as: :track
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
