@@ -1,3 +1,5 @@
+ 
+
 <div class="col-lg-5 mx-lg-auto card shadow mt-5">
   <div class="card-header">
     <h3 class="card-title text-center">FRIVE FORM</h3>
@@ -5,6 +7,7 @@
 <div class="card-body">
 
 
+ 
 <%= form_with method: :post, url:create_detail_path(current_user.id)  do |form| %>
 
 
@@ -58,6 +61,9 @@
     <div class="form-group mb-2">
       <%= form.label :Drive_date %><br>
        <%= form.text_field :date, class: "form-control form-control-lg"%>
+       <% if notice %>
+       <%= notice %>
+      <%end%>
     </div>
 
  

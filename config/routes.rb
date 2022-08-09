@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "data/:id", to: "home#data",as: :data
   post "updatedata/:id", to: "home#updatedata",as: :updatedata
   get "interviewer", to: "home#interviewer", as: :interviewer
+  get "all_user_list", to: "home#all_user_list", as: :all_user_list
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',

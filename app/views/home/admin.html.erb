@@ -3,8 +3,6 @@
 <%ar=[]%>
 
 
-
-
 <% @drive.each do |i|%>
   <% unless ar.include?(i.date) %> 
     <%ar.push(i.date)%>
@@ -18,3 +16,4 @@
 <% end %>
 
 
+ <%= link_to "all_user" ,all_user_list_path %>

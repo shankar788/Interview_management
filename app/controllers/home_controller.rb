@@ -15,10 +15,12 @@ class HomeController < ApplicationController
   # ssaasass
   end  
   def interviewer
-    unless user_signed_in?
+    if current_user
+      @n = current_user.name
+      @list = User.where(inter:@n)
+    else
       redirect_to new_user_session_path
     end
-
   end  
  
   def data
@@ -40,19 +42,45 @@ class HomeController < ApplicationController
     unless user_signed_in?
       redirect_to new_user_session_path
      end
-     @data = Mydate.where(date:params[:data])
+     @date = Mydate.where(date:params[:data])
   
   end  
 
   def admindata
     @data = params[:d]
   end  
+
+
   def create_detail
     @id = User.find(params[:id])
-    @id.mydates.create(:ten => params[:ten],:year =>  params[:year],:percentage => params[:percentage],:twelth => params[:twelth],:year1 => params[:year1],:percentage1 => params[:percentage1],:digree => params[:digree],:year2 => params[:year2],:percentage2 =>params[:percentage2],:date => params[:date])
-
-    redirect_to candidate_path
+    if params[:date]!=""
+      @id.mydates.create(:ten => params[:ten],:year =>  params[:year],:percentage => params[:percentage],:twelth => params[:twelth],:year1 => params[:year1],:percentage1 => params[:percentage1],:digree => params[:digree],:year2 => params[:year2],:percentage2 =>params[:percentage2],:date => params[:date])
+      redirect_to candidate_path
+    else 
+    flash[:notice] = "Date is empty" 
+    redirect_to apply_path
+    end 
   end  
+   
+  def apply
+    if current_user
+
+    else
+      redirect_to root_path
+    end  
+
+
+  end
+
+  def all_user_list
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+    @user = User.all    
+  end  
+
+
+
 
   def admin
     if current_user
@@ -64,13 +92,4 @@ class HomeController < ApplicationController
 
   end  
     
-  def apply
-    if current_user
-
-    else
-      redirect_to root_path
-    end  
-
-
-  end
 end

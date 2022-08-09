@@ -1,6 +1,6 @@
 
 
-<%@data.each do  |i|%>
+<%@date.each do  |i|%>
 <%@a = User.find(i.user_id)%>
 <%=@a.name %>
 <%= link_to "Edit" ,data_path(@a.id) %> <br>
