@@ -10,10 +10,17 @@
    <%end%>
 <% end %>
 
-
+<% if ar.empty?()%>
+    <h1> List is empty no user applied for drive </h1>
+<% else%>
 <% ar.each do |i|%>
-<%= link_to "Drive #{(ar.index(i)+1)}", detail_path(i) %><br>
+<%= link_to "#{(ar.index(i)+1)} -  #{i} ", detail_path(i) %><br>
 <% end %>
+<%end%>
 
 
  <%= link_to "all_user" ,all_user_list_path %>
+<br>
+ <%= link_to "setdrivepath" ,setdrivedate_path %>
+ <br>
+ <%= link_to "all_drive_date" ,all_date_path %>

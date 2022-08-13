@@ -1,0 +1,5 @@
+<% @all_date.each do |i|%>
+ <%= i.date%> <%= link_to "delete" , remove_path(i.id) %> <br>
+<%end%> 
+<br>
+<%= link_to "admin" ,admin_path %>

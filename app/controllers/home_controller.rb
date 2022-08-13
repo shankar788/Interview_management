@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @drive_date =Setdate.all 
     if current_user
       if current_user.role == "user"
         redirect_to candidate_path 
@@ -34,7 +35,7 @@ class HomeController < ApplicationController
 
   def updatedata
     @data = User.find(params[:id])
-    @data.update(params.require(:user).permit(:name,:email,:inter,:first,:password,:second,:third,:role))
+    @data.update(params.require(:user).permit(:name,:email,:inter,:first,:password,:second,:third,:role,:attend_time,:interview_date))
     redirect_to admin_path
   end
 
@@ -51,18 +52,23 @@ class HomeController < ApplicationController
   end  
 
 
-  def create_detail
+  def create_detail 
+  
     @id = User.find(params[:id])
-    if params[:date]!=""
-      @id.mydates.create(:ten => params[:ten],:year =>  params[:year],:percentage => params[:percentage],:twelth => params[:twelth],:year1 => params[:year1],:percentage1 => params[:percentage1],:digree => params[:digree],:year2 => params[:year2],:percentage2 =>params[:percentage2],:date => params[:date])
-      redirect_to candidate_path
+    @date_match = Setdate.find_by(date: params[:date])
+    if @date_match
+      if params[:date]!=""
+        @id.mydates.create(:ten => params[:ten],:year =>  params[:year],:percentage => params[:percentage],:twelth => params[:twelth],:year1 => params[:year1],:percentage1 => params[:percentage1],:digree => params[:digree],:year2 => params[:year2],:percentage2 =>params[:percentage2],:date => params[:date])
+        redirect_to candidate_path
+      end  
     else 
-    flash[:notice] = "Date is empty" 
+    flash[:notice] = "Plz select valid drive date" 
     redirect_to apply_path
     end 
   end  
    
   def apply
+    @all_date = Setdate.all
     if current_user
 
     else
@@ -92,12 +98,62 @@ class HomeController < ApplicationController
 
   end  
 
-
+   
   def track
     unless user_signed_in?
       redirect_to new_user_session_path
     end
     @user = User.find(params[:id])   
   end  
+   
+  def setdrivedate
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+  end
+  
+
+  def set
+    @a = Setdate.new(:date => params[:date])
+    if @a.save
+      flash[:notice] = "Success"
+      redirect_to setdrivedate_path
+    elsif
+      flash[:notice] = "date empty field"
+      redirect_to setdrivedate_path
+    elsif
+      unless user_signed_in?
+        redirect_to new_user_session_path
+      end
+    end   
+
+  end
+
     
+
+  def all_date
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+    @all_date = Setdate.all
+  end  
+
+    
+  def remove
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+    @del = Setdate.find(params[:id])
+    @del.destroy
+    redirect_to all_date_path
+  end  
+  
+  def edit_user_profile
+  end  
+
+  private
+  def article_params
+    params.require(:setdate).permit(:date)
+  end
+
 end
