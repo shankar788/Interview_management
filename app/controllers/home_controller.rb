@@ -13,7 +13,9 @@ class HomeController < ApplicationController
   end
 
   def candidate
-  # ssaasass
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end  
   def interviewer
     if current_user
@@ -29,6 +31,7 @@ class HomeController < ApplicationController
      redirect_to new_user_session_path
     end
     @user =User.find(params[:id])
+    
   end  
 
     
@@ -89,8 +92,13 @@ class HomeController < ApplicationController
 
 
   def admin
+    @drive = 0
     if current_user
       @drive = Mydate.all
+      if current_user.role == "admin"
+        @d = Mydate.all
+        @drive = @d
+      end  
     else
       redirect_to root_path
     end  

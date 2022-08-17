@@ -2,13 +2,18 @@
 
 <%ar=[]%>
 
-
+<%if @drive %>
 <% @drive.each do |i|%>
   <% unless ar.include?(i.date) %> 
     <%ar.push(i.date)%>
  
    <%end%>
 <% end %>
+<%end%>
+
+
+
+<% if current_user.role =="admin" %>
 
 <% if ar.empty?()%>
     <h1> List is empty no user applied for drive </h1>
@@ -18,9 +23,17 @@
 <% end %>
 <%end%>
 
+<%end%>
+
+
+
+ <% if current_user.role =="admin" %>
 
  <%= link_to "all_user" ,all_user_list_path %>
 <br>
  <%= link_to "setdrivepath" ,setdrivedate_path %>
  <br>
  <%= link_to "all_drive_date" ,all_date_path %>
+<% else%>
+ <%= "sorry invalid user permission"%>
+ <%end%>
