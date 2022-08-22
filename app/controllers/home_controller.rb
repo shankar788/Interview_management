@@ -57,19 +57,16 @@ class HomeController < ApplicationController
 
 
   def create_detail 
-  
     @id = User.find(params[:id])
-    @date_match = Setdate.find_by(date: params[:date])
-    if @date_match
-      if params[:date]!=""
-        @id.mydates.create(:ten => params[:ten],:year =>  params[:year],:percentage => params[:percentage],:twelth => params[:twelth],:year1 => params[:year1],:percentage1 => params[:percentage1],:digree => params[:digree],:year2 => params[:year2],:percentage2 =>params[:percentage2],:date => params[:date])
-        redirect_to candidate_path
-      end  
-    else 
-    flash[:notice] = "Plz select valid drive date" 
-    redirect_to apply_path
-    end 
+    if params[:ten]!="" && params[:year]!="" && params[:percentage]!="" && params[:twelth]!="" && params[:year1]!="" && params[:percentage1]="" && params[:digree]!="" && params[:year2]!="" && params[:percentage2]!="" && params[:profile]!=""
+      @id.mydates.create(:ten => params[:ten],:year => params[:year],:percentage => params[:percentage],:twelth => params[:twelth],:year1 => params[:year1],:percentage1 => params[:percentage1],:digree => params[:digree],:year2 => params[:year2],:percentage2 => params[:percentage2],:date => params[:date],:profile => params[:profile])
+    else
+      flash[:notice] = "Please filled all filled properly"  
+      redirect_to apply_path  
+    end  
   end  
+
+
    
   def apply
     @all_date = Setdate.all
@@ -145,7 +142,7 @@ class HomeController < ApplicationController
       redirect_to new_user_session_path
     end
     @all_date = Setdate.all
-  end  
+  end   
 
     
   def remove
@@ -164,5 +161,6 @@ class HomeController < ApplicationController
   def article_params(*args)
     params.require(:setdate).permit(:date,:profile)
   end
+  
 
 end

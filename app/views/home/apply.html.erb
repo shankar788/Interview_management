@@ -1,108 +1,115 @@
-
-
 <div class="container">
-   
+
   <div class="row">
-                
-              <div class="col-6 mt-5">
-                <div class="text-right"> DRIVE DATES</div>
-                <% @all_date.each do |i|%>
-                
-                <div class="row mt-3">
-                 
-                  <div class="col-md-6">
-                      <label>Date</label>
-                  </div>
-                  <div class="col-md-6">
-                      <p><%= i.date%></p>
-                  </div>
-                 
-              </div>
-              <%end%>
-              </div>
-    
 
-<div class="col-lg-5 mx-lg-auto card shadow mt-5">
-  <div class="card-header">
-    <h3 class="card-title text-center">FRIVE FORM</h3>
-  </div>
-<div class="card-body">
+    <div class="col-6 mt-5">
+      <div class="text-right"> DRIVE DATES</div>
+      <% @all_date.each do |i|%>
 
+        <div class="row mt-3">
 
- 
-<%= form_with method: :post, url:create_detail_path(current_user.id)  do |form| %>
+          <div class="col-md-6">
+            <label>Date</label>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <%= i.date%>
+            </p>
+          </div>
 
-
-<div class="form-group mb-2">
-<%= form.label :"10TH"%><br>
- <%= form.text_field :ten , class: "form-control form-control-lg"%>
-</div>
-
-
-
-
-<div class="form-group mb-2">
-  <%= form.label :Year_of_passing %><br>
-   <%= form.text_field :year , class: "form-control form-control-lg"%>
-</div>
-
-<div class="form-group mb-2">
-  <%= form.label :percentage %><br> 
-   <%= form.text_field :percentage , class: "form-control form-control-lg"%>
-</div>
-
-
-<div class="form-group mb-2">
-  <%= form.label :"12TH"%><br>
-   <%= form.text_field :twelth , class: "form-control form-control-lg"%>
-  </div>
-
-  <div class="form-group mb-2">
-    <%= form.label :Year_of_passing%><br>
-     <%= form.text_field :year1 , class: "form-control form-control-lg"%>
-  </div>  
- 
-  <div class="form-group mb-2">
-    <%= form.label :percentage %><br>
-     <%= form.text_field :percentage1 , class: "form-control form-control-lg"%>
-  </div>
-
-  <div class="form-group mb-2">
-    <%= form.label :Digree%><br>
-     <%= form.text_field :digree , class: "form-control form-control-lg"%>
-    </div>
-    
-    <div class="form-group mb-2">
-      <%= form.label :Year_of_passing %><br>
-       <%= form.text_field :year2 , class: "form-control form-control-lg"%>
-    </div>
-    
-    <div class="form-group mb-2">
-      <%= form.label :percentage %><br>
-       <%= form.text_field :percentage2 , class: "form-control form-control-lg"%>
+        </div>
+        <%end%>
     </div>
 
-    <div class="form-group mb-2">
 
-       <div class="form-group mb-2">
+    <div class="col-lg-5 mx-lg-auto card shadow mt-5">
+      <div class="card-header">
+        <h3 class="card-title text-center">FRIVE FORM</h3>
+      </div>
+      <div class="card-body">
+
+
+
+        <%= form_with method: :post, url:create_detail_path(current_user.id) do |form| %>
+
+
+          <div class="form-group mb-2">
+            <%= form.label :"10TH"%><br>
+              <%= form.text_field :ten , class: "form-control form-control-lg" %>
+          </div>
+
+          <div class="form-group mb-2">
+            <%= form.label :Year_of_passing %><br>
+              <%= form.text_field :year , class: "form-control form-control-lg" %>
+          </div>
+
+          <div class="form-group mb-2">
+            <%= form.label :percentage %><br>
+              <%= form.text_field :percentage , class: "form-control form-control-lg" %>
+          </div>
+
+
+          <div class="form-group mb-2">
+            <%= form.label :"12TH"%><br>
+              <%= form.text_field :twelth , class: "form-control form-control-lg" %>
+          </div>
+
+          <div class="form-group mb-2">
+            <%= form.label :Year_of_passing%><br>
+              <%= form.text_field :year1 , class: "form-control form-control-lg" %>
+          </div>
+
+          <div class="form-group mb-2">
+            <%= form.label :percentage %><br>
+              <%= form.text_field :percentage1 , class: "form-control form-control-lg" %>
+          </div>
+
+          <div class="form-group mb-2">
+            <%= form.label :Digree%><br>
+              <%= form.text_field :digree , class: "form-control form-control-lg" %>
+          </div>
+
+          <div class="form-group mb-2">
+            <%= form.label :Year_of_passing %><br>
+              <%= form.text_field :year2 , class: "form-control form-control-lg" %>
+          </div>
+
+
+          <div class="form-group mb-2">
+            <%= form.label :percentage %><br>
+              <%= form.text_field :percentage2 , class: "form-control form-control-lg" %>
+          </div>
+
+          <% if notice %>
+          <%=notice%>
+        <%end%>
+
+
+          <div class="form-group mb-2">
   <%= form.label :date%><br>
-   <%= form.collection_select :date,Setdate.all, :date ,:date%>
+   <%= form.collection_select :date,Setdate.all,:date ,:date%>
   </div>
-       <% if notice %>
-       <%= notice %>
-       
-      <%end%>
+
+          <!-- <div class="form-group mb-2">
+            <%= form.label :date %><br>
+              <%= form.text_field :date , class: "form-control form-control-lg" %>
+          </div> -->
+
+
+          <!-- <div class="form-group mb-2">
+            <%= form.label :profile %><br>
+              <%= form.text_field :profile , class: "form-control form-control-lg" %>
+          </div> -->
+
+         
+                <div class="form-group mb-2">
+      <%= form.label :profile%><br>
+       <%= form.collection_select :profile,Setdate.all,:profile ,:profile%>
+      </div>
+
+                <%= form.submit "Submit" %>
+      </div>
+      <% end %>
+
     </div>
-  
-<%= form.submit "Submit" %>
-</div>
-<% end %>
-
-</div>
-</div>
-
-
-
-  
   </div>
-</div>

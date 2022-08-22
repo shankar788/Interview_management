@@ -1,11 +1,17 @@
 
 
 <% if current_user.role =="admin" %>
-
+<table>
 <% @all_date.each do |i|%>
- <%= i.date%> <%= link_to "delete" , remove_path(i.id) %> <br>
- <%= i.profile%> <%= link_to "delete" , remove_path(i.id) %> <br>
+     <tr>
+        <td>
+            <%= i.date%> <%= link_to "delete" , remove_path(i.id) %>
+            <%= i.profile%> <%= link_to "delete" , remove_path(i.id) %>
+        </td>
+     </tr>
+
 <%end%> 
+</table>
 <br>
 <%= link_to "admin" ,admin_path %>
 
