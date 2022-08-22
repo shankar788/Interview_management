@@ -39,6 +39,8 @@
 </div>
 
 
+
+
 <div class="form-group mb-2">
   <%= form.label :Year_of_passing %><br>
    <%= form.text_field :year , class: "form-control form-control-lg"%>
@@ -81,15 +83,16 @@
     </div>
 
     <div class="form-group mb-2">
-      <%= form.label :Drive_date %><br>
-       <%= form.text_field :date, class: "form-control form-control-lg"%>
+
+       <div class="form-group mb-2">
+  <%= form.label :date%><br>
+   <%= form.collection_select :date,Setdate.all, :date ,:date%>
+  </div>
        <% if notice %>
        <%= notice %>
+       
       <%end%>
     </div>
-
- 
-
   
 <%= form.submit "Submit" %>
 </div>

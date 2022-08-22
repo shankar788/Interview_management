@@ -1,33 +1,48 @@
-<% if notice %>
-<%= notice %>
-<%end%>
+
+
+
+  <% if current_user.role =="admin" %>
+  <% if notice %>
+  <%= notice %>
+  <%end%>
+    
   
-
-
-
-<div class="col-lg-5 mx-lg-auto card shadow mt-5">
-    <div class="card-header">
-      <h3 class="card-title text-center">Drive Date</h3>
+  
+  
+  <div class="col-lg-5 mx-lg-auto card shadow mt-5">
+      <div class="card-header">
+        <h3 class="card-title text-center">Drive Date</h3>
+      </div>
+    <div class="card-body">
+    
+    
+     
+    <%= form_with method: :post , url:set_path do |form| %>
+      
+  
+  
+    
+    <div class="form-group mb-2">
+    <%= form.label :Date%><br>  
+     <%= form.text_field :date , class: "form-control form-control-lg"%>
     </div>
-  <div class="card-body">
-  
-  
-   
-  <%= form_with method: :post , url:set_path do |form| %>
+
+       
+    <div class="form-group mb-2">
+      <%= form.label :Profile%><br>
+       <%= form.text_field :profile , class: "form-control form-control-lg"%>
+      </div>
+      
+    <%= form.submit "Setdate" %>
+    </div>
+    <% end %>
     
-
-
   
-  <div class="form-group mb-2">
-  <%= form.label :Date%><br>
-   <%= form.text_field :date , class: "form-control form-control-lg"%>
-  </div>
-    
-  <%= form.submit "Setdate" %>
-  </div>
-  <% end %>
-  
-
-  </div>
-  </div>
+    </div>
+    </div>
+ 
+ <% else%>
+  <%= "sorry invalid user permission"%>
+  <%end%>
+ 
   

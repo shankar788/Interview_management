@@ -1,3 +1,4 @@
+<div class="bag">
 
 
 <%ar=[]%>
@@ -13,27 +14,57 @@
 
 
 
-<% if current_user.role =="admin" %>
-
-<% if ar.empty?()%>
-    <h1> List is empty no user applied for drive </h1>
-<% else%>
-<% ar.each do |i|%>
-<%= link_to "#{(ar.index(i)+1)} -  #{i} ", detail_path(i) %><br>
-<% end %>
-<%end%>
-
-<%end%>
 
 
+
+   <div class="container mt-5">
+    <ul class="list-group">
+      <li class="list-group-item text-center">ADMIN DASHBOARD</li>
+    
+    
+      <li class="list-group-item list-group-item-danger">
+
+        <% if current_user.role =="admin" %>
+
+        <% if ar.empty?()%>
+            <h1> List is empty no user applied for drive </h1>
+        <% else%>
+        <% ar.each do |i|%>
+        <%= link_to "#{(ar.index(i)+1)} -  #{i} ", detail_path(i) %><br>
+        <% end %>
+        <%end%>
+           
+        <%end%>
+
+      </li>
+
+
+      <li class="list-group-item list-group-item-primary">
+                 
 
  <% if current_user.role =="admin" %>
 
  <%= link_to "all_user" ,all_user_list_path %>
 <br>
- <%= link_to "setdrivepath" ,setdrivedate_path %>
+ <%= link_to "Set date and Profile Of Drive" ,setdrivedate_path %>
  <br>
- <%= link_to "all_drive_date" ,all_date_path %>
+ <%= link_to "all_drive_date and Profile" ,all_date_path %>
 <% else%>
  <%= "sorry invalid user permission"%>
  <%end%>
+
+   
+
+      </li>
+    
+    </ul>
+
+   </div>
+
+
+
+
+
+
+
+ </div>

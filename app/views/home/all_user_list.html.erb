@@ -1,4 +1,13 @@
+
+
+
+<% if current_user.role =="admin" %>
 <% @user.each do |i|%>
 <%= i.name%> 
 <%= link_to "Edit" ,data_path(i.id) %> <br>
+<%end%>
+
+
+<% else%>
+<%= "sorry invalid user permission"%>
 <%end%>

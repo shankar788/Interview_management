@@ -1,4 +1,39 @@
- 
- <% @drive_date.each do |i| %>
- DATE <%=i.date%> <br>
- <%end%>
+
+
+
+
+<div class="image">
+
+    <div class="content">
+        <h1>WALK IN DRIVE FOR CANDIDATES</h1>
+        <P>we have organized walk in drive for different type of role for the candidates</P>
+  
+    </div>
+     
+        
+  
+
+    <table class="text-white mtop">
+        <tr>
+          <th>Date</th>
+          <th>Profile</th>
+        </tr>
+        <% @drive_date.each do |i| %>
+        <tr>
+          <td><%=i.date%></td>
+          <td><%=i.profile%></td>
+        </tr>
+        <%end%>
+      </table>
+  
+</div>
+
+        
+<!-- <div class="padding text-white text-center mtop">
+
+    <% @drive_date.each do |i| %>
+    <div style="margin-top: 12px;">Date:<%=i.date%></div>
+    PROFILE :<%=i.profile%> <br>
+    
+    <%end%>
+</div> -->

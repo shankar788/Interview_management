@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+  
     @drive_date =Setdate.all 
     if current_user
       if current_user.role == "user"
@@ -122,9 +123,9 @@ class HomeController < ApplicationController
   
 
   def set
-    @a = Setdate.new(:date => params[:date])
+    @a = Setdate.new(:date => params[:date],:profile => params[:profile])
     if @a.save
-      flash[:notice] = "Success"
+      flash[:notice] = "Successfully date and Profile updated"  
       redirect_to setdrivedate_path
     elsif
       flash[:notice] = "date empty field"
@@ -160,8 +161,8 @@ class HomeController < ApplicationController
   end  
 
   private
-  def article_params
-    params.require(:setdate).permit(:date)
+  def article_params(*args)
+    params.require(:setdate).permit(:date,:profile)
   end
 
 end

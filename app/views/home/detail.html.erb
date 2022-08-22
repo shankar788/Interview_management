@@ -1,7 +1,16 @@
 
 
+
+
+
+<% if current_user.role =="admin" %>
+
 <%@date.each do  |i|%>
 <%@a = User.find(i.user_id)%>
 <%=@a.name %>
 <%= link_to "Edit" ,data_path(@a.id) %> <br>
+<%end%>
+
+<% else%>
+<%= "sorry invalid user permission"%>
 <%end%>
