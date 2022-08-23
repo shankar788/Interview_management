@@ -7,7 +7,7 @@
 <!--  -->
 <table style="margin: 235px 510px;">
     <tr>
-        <th>Date</th>
+        <th>Name</th>
         <th>Profile</th>
       </tr>
 
@@ -16,7 +16,7 @@
     <td>  
         <%@a = User.find(i.user_id)%>
         <%=@a.name %>
-        <%=link_to "Edit" ,data_path(@a.id) %>
+        <%=link_to "Detail" ,data_path(@a.id) %>
     </td> 
 
     <td>  

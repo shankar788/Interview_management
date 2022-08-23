@@ -1,72 +1,37 @@
 
-<div class="col-lg-5 mx-lg-auto card shadow mt-5">
-    <div class="card-header">
-      <h3 class="card-title text-center text-danger">EDIT</h3>
-    </div>
-  <div class="card-body">
-  
-  
-  <%= form_with model:@user,method: :post, url:updatedata_path(@user.id)  do |form| %>
-  
-  
-  <div class="form-group mb-2">
-  <%= form.label :Name%><br>
-   <%= form.text_field :name , class: "form-control form-control-lg"%>
-  </div>
+
 
     
-  
-  <div class="form-group mb-2">
-    <%= form.label :email%><br>
-     <%= form.text_field :email, class: "form-control form-control-lg"%>
-    </div>
+ <% if current_user.role =="admin" %>
+<!--  -->
+<%=@user.name%> <br>
+<%=@user.email%> <br>
+<% @a = Mydate.find_by(user_id:@user.id)%>
+   <% if @a%>
+   Profile:<%=@a.profile%> <br>
+   Date:<%=@a.date%> <br>
+   10th:<%=@a.ten%> <br>
+   Passing Year:<%=@a.year%> <br>
+   percentage:<%=@a.percentage%> <br>
+   12th:<%=@a.twelth%> <br>
+   year:<%=@a.year1%> <br>
+   percentage:<%=@a.percentage1%> <br>
+   Digree:<%=@a.digree%> <br>
+   Year:<%=@a.year2%> <br>
+   percentage:<%=@a.percentage2%>
+ <%else%>
+ 
+ <%end%>
+     
+ <!--  -->
+<% else%>
+<!--  -->
+ <%= "sorry invalid user permission"%>
+ <!--  -->
+ <%end%>
+ <!--  -->
+<br>
+ <%= link_to "Shedule_Interview",Shedule_Interview_path(@user.id)%>
     
-    <div class="form-group mb-2">
-        <%= form.label :First_round%><br>
-        <%= form.text_field :first, class: "form-control form-control-lg"%>
-    </div>
-  
-    <div class="form-group mb-2">
-        <%= form.label :Second_round%><br>
-        <%= form.text_field :second, class: "form-control form-control-lg"%>
-    </div>
-
-
-    <div class="form-group mb-2">
-        <%= form.label :Third_round%><br>
-        <%= form.text_field :third, class: "form-control form-control-lg"%>
-    </div>
-   
-    <div class="form-group mb-2">
-        <%= form.label :Time%><br>
-        <%= form.text_field :attend_time, class: "form-control form-control-lg"%>
-    </div>
-
-    <div class="form-group mb-2">
-        <%= form.label :interview_date%><br>
-        <%= form.text_field :interview_date, class: "form-control form-control-lg"%>
-    </div>
-
-  
-
-
-    <div class="form-group mb-2">
-        <%= form.label :Interviewer_name%><br>
-        <%= form.text_field :inter, class: "form-control form-control-lg"%>
-    </div>
-
-    <div class="form-group mb-2">
-        <%= form.label :Role_user%><br>
-        <%= form.text_field :role, class: "form-control form-control-lg"%>
-    </div>
-
     
-  
-    
-  <%= form.submit "Press" %>
-  </div>
-  <% end %>
-  
-  </div>
-  </div>
-  
+

@@ -4,7 +4,7 @@
 <% if current_user.role =="admin" %>
 <% @user.each do |i|%>
 <%= i.name%> 
-<%= link_to "Edit" ,data_path(i.id) %> <br>
+<%= link_to "Edit" ,edit_user_profile_path(i.id) %> <br>
 <%end%>
 
 

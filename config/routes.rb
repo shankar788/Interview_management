@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "all_date/", to: "home#all_date" , as: :all_date
   get "remove/:id", to: "home#remove" ,as: :remove
   get "edit_user_profile/:id", to: "home#edit_user_profile" , as: :edit_user_profile
+  get "Shedule_Interview/:id", to: "home#Shedule_Interview" , as: :Shedule_Interview
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',

@@ -30,7 +30,7 @@
             <h1> List is empty no user applied for drive </h1>
         <% else%>
         <% ar.each do |i|%>
-        <%= link_to "#{(ar.index(i)+1)} -  #{i}", detail_path(i) %><br>
+        <%= link_to "#{(ar.index(i)+1)} -  #{i}",detail_path(i) %><br>
         <% end %> 
 
         <!-- <% @drive.each do |a|%>

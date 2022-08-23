@@ -156,11 +156,19 @@ class HomeController < ApplicationController
       redirect_to new_user_session_path
     end
     @del = Setdate.find(params[:id])
+    @date = Mydate.where(date:@del.date)
+    @date.each do |i|
+      i.destroy
+    end  
     @del.destroy
-    redirect_to all_date_path
+    redirect_to admin_path
   end  
   
   def edit_user_profile
+    @user = User.find(params[:id])
+  end  
+
+  def Shedule_Interview
     @user = User.find(params[:id])
   end  
 

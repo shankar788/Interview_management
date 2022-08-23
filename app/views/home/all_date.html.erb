@@ -5,8 +5,8 @@
 <% @all_date.each do |i|%>
      <tr>
         <td>
-            <%= i.date%> <%= link_to "delete" , remove_path(i.id) %>
-            <%= i.profile%> <%= link_to "delete" , remove_path(i.id) %>
+            <%= i.date%> : <%= i.profile%> <%= link_to "delete" , remove_path(i.id) %>
+            
         </td>
      </tr>
 
