@@ -31,9 +31,14 @@
         <% else%>
         <% ar.each do |i|%>
         <%= link_to "#{(ar.index(i)+1)} -  #{i}", detail_path(i) %><br>
-        <% end %>
+        <% end %> 
+
+        <!-- <% @drive.each do |a|%>
+        <%=a.profile%> 
+        <%end%> -->
+
         <%end%>
-           
+                  
         <%end%>
 
       </li>

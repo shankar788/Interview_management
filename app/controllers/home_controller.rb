@@ -46,9 +46,8 @@ class HomeController < ApplicationController
   def detail
     unless user_signed_in?
       redirect_to new_user_session_path
-     end
-     @date = Mydate.where(date:params[:data])
-  
+    end
+    @date = Mydate.where(date:params[:data])
   end  
 
   def admindata
@@ -59,9 +58,16 @@ class HomeController < ApplicationController
   def create_detail 
     @id = User.find(params[:id])
     if params[:ten]!="" && params[:year]!="" && params[:percentage]!="" && params[:twelth]!="" && params[:year1]!="" && params[:percentage1]="" && params[:digree]!="" && params[:year2]!="" && params[:percentage2]!="" && params[:profile]!=""
-      @id.mydates.create(:ten => params[:ten],:year => params[:year],:percentage => params[:percentage],:twelth => params[:twelth],:year1 => params[:year1],:percentage1 => params[:percentage1],:digree => params[:digree],:year2 => params[:year2],:percentage2 => params[:percentage2],:date => params[:date],:profile => params[:profile])
+      if @id.mydates.pluck(:profile).include?(params[:profile]) && @id.mydates.pluck(:date).include?(params[:date])
+       flash[:notice] = "you have already Applied for this drive of profile #{params[:profile]} which held on date #{params[:date]}"
+       redirect_to apply_path
+      else  
+        @id.mydates.create(:ten => params[:ten],:year => params[:year],:percentage => params[:percentage],:twelth => params[:twelth],:year1 => params[:year1],:percentage1 => params[:percentage1],:digree => params[:digree],:year2 => params[:year2],:percentage2 => params[:percentage2],:date => params[:date],:profile => params[:profile])
+        flash[:notice] = "Successfully Applied"  
+        redirect_to candidate_path
+      end  
     else
-      flash[:notice] = "Please filled all filled properly"  
+      flash[:notice] = "Value not be empty"  
       redirect_to apply_path  
     end  
   end  
@@ -155,6 +161,7 @@ class HomeController < ApplicationController
   end  
   
   def edit_user_profile
+    @user = User.find(params[:id])
   end  
 
   private

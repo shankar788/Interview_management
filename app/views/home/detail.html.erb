@@ -4,13 +4,40 @@
 
 
 <% if current_user.role =="admin" %>
+<!--  -->
+<table style="margin: 235px 510px;">
+    <tr>
+        <th>Date</th>
+        <th>Profile</th>
+      </tr>
 
-<%@date.each do  |i|%>
-<%@a = User.find(i.user_id)%>
-<%=@a.name %>
-<%= link_to "Edit" ,data_path(@a.id) %> <br>
-<%end%>
+   <tr>
+    <%@date.each do  |i|%>
+    <td>  
+        <%@a = User.find(i.user_id)%>
+        <%=@a.name %>
+        <%=link_to "Edit" ,data_path(@a.id) %>
+    </td> 
 
+    <td>  
+        <%=i.profile%>
+    </td> 
+
+        
+     
+       
+   </tr>
+   
+ 
+    <%end%>
+<!--  -->
+
+</table>
 <% else%>
 <%= "sorry invalid user permission"%>
 <%end%>
+
+
+
+
+

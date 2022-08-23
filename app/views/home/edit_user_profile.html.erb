@@ -1,0 +1,11 @@
+
+<% @user.mydates.pluck(:profile).each do |i|%>
+  <%=i%> <br>
+<% end %>
+
+<% if @user.mydates.pluck(:profile).include?("Web developer") && @user.mydates.pluck(:date).include?("1-1-22")%>
+  <%="Present"%> 
+<% else %>
+<%="Not Present"%>
+<% end %>
+

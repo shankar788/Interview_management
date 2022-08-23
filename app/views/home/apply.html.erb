@@ -1,4 +1,8 @@
 <div class="container">
+  <% if notice %>
+  <%=notice%>
+<%end%>
+
 
   <div class="row">
 
@@ -80,11 +84,7 @@
               <%= form.text_field :percentage2 , class: "form-control form-control-lg" %>
           </div>
 
-          <% if notice %>
-          <%=notice%>
-        <%end%>
-
-
+      
           <div class="form-group mb-2">
   <%= form.label :date%><br>
    <%= form.collection_select :date,Setdate.all,:date ,:date%>
