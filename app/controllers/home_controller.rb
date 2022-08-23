@@ -47,7 +47,7 @@ class HomeController < ApplicationController
     unless user_signed_in?
       redirect_to new_user_session_path
     end
-    @date = Mydate.where(date:params[:data])
+    @date = Mydate.where(profile:params[:data])
   end  
 
   def admindata
