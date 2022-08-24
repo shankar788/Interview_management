@@ -39,7 +39,7 @@ class HomeController < ApplicationController
 
   def updatedata
     @data = User.find(params[:id])
-    @data.update(params.require(:user).permit(:name,:email,:inter,:first,:password,:second,:third,:role,:attend_time,:interview_date))
+    @data.update(params.require(:user).permit(:name,:email,:inter,:first,:password,:second,:third,:role,:attend_time,:interview_date,:zoom_link))
     redirect_to admin_path
   end
 
@@ -122,16 +122,24 @@ class HomeController < ApplicationController
     unless user_signed_in?
       redirect_to new_user_session_path
     end
+    
   end
   
 
   def set
     @a = Setdate.new(:date => params[:date],:profile => params[:profile])
-    if @a.save
-      flash[:notice] = "Successfully date and Profile updated"  
+    @data = params[:date][0,4].to_i
+    @y = DateTime.now.strftime('%Y').to_i
+    if @data >= @y
+      if @a.save
+      flash[:notice] = "Successfully date and Profile updated #{params[:date]}"  
       redirect_to setdrivedate_path
-    elsif
-      flash[:notice] = "date empty field"
+      end
+    elsif params[:date]=="" && params[:profile]==""
+      flash[:notice] = "empty field are there"
+      redirect_to setdrivedate_path
+    elsif @data <= @y
+      flash[:notice] = "The given Date Cant Be set"
       redirect_to setdrivedate_path
     elsif
       unless user_signed_in?
@@ -165,10 +173,16 @@ class HomeController < ApplicationController
   end  
   
   def edit_user_profile
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
     @user = User.find(params[:id])
   end  
 
   def Shedule_Interview
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
     @user = User.find(params[:id])
   end  
 

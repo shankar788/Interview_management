@@ -1,9 +1,11 @@
+<% if @list%>
+    <%="No Candiate Assigned You For Interview Yet"%>
+<%else%>
 <% @list.each do |i| %>
- Name :<%= i.name %> <br>
- Time :<%= i.attend_time %> <br>
- Date :<%= i.interview_date %> <br>
-
-
+Name :<%= i.name %> <br>
+Time :<%= i.attend_time %> <br>
+Date :<%= i.interview_date %> <br>
+<%end%>
 <%end%>
 
 

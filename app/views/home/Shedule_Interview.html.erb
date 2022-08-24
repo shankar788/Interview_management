@@ -1,72 +1,84 @@
-<% if current_user.role =="admin" %>
-<!--  -->
-<div class="col-lg-5 mx-lg-auto card shadow mt-5">
-    <div class="card-header">
-      <h3 class="card-title text-center text-danger">INTERVIEW</h3>
-    </div>
-  <div class="card-body">
-  
-  
-  <%= form_with model:@user,method: :post, url:updatedata_path(@user.id)  do |form| %>
-  
-  
-  <div class="form-group mb-2">
-  <%= form.label :Name%><br>
-   <%= form.text_field :name , class: "form-control form-control-lg"%>
-  </div>
-
-    
-  
-  <div class="form-group mb-2">
-    <%= form.label :email%><br>
-     <%= form.text_field :email, class: "form-control form-control-lg"%>
-    </div>
-    
-    <div class="form-group mb-2">
-        <%= form.label :First_round%><br>
-        <%= form.text_field :first, class: "form-control form-control-lg"%>
-    </div>
-  
-    <div class="form-group mb-2">
-        <%= form.label :Second_round%><br>
-        <%= form.text_field :second, class: "form-control form-control-lg"%>
-    </div>
+<% if current_user.role=="admin" %>
+    <!--  -->
+    <div class="col-lg-5 mx-lg-auto card shadow mt-5">
+        <div class="card-header">
+            <h3 class="card-title text-center text-danger">INTERVIEW</h3>
+        </div>
+        <div class="card-body">
 
 
-    <div class="form-group mb-2">
-        <%= form.label :Third_round%><br>
-        <%= form.text_field :third, class: "form-control form-control-lg"%>
+            <%= form_with model:@user,method: :post, url:updatedata_path(@user.id) do |form| %>
+
+
+                <div class="form-group mb-2">
+                    <%= form.label :Name%><br>
+                        <%= form.text_field :name , class: "form-control form-control-lg" %>
+                </div>
+
+
+
+                <div class="form-group mb-2">
+                    <%= form.label :email%><br>
+                        <%= form.text_field :email, class: "form-control form-control-lg" %>
+                </div>
+
+                <div class="form-group mb-2">
+                    <%if @user.first.empty?%>
+                        <%= form.label :First_round%><br>
+                        <%= form.text_field :first, class: "form-control form-control-lg" %>
+                        <%= form.label :Second_round%><br>
+                        <%= form.text_field :second, class: "form-control form-control-lg disabled", :disabled => true  %>
+                        <%= form.label :Third_round%><br>
+                        <%= form.text_field :third, class: "form-control form-control-lg disabled", :disabled => true  %>
+                    <%else%>
+                        <%if @user.second.empty?%>
+                            <%= form.label :First_round%><br>
+                            <%= form.text_field :first, class: "form-control form-control-lg disabled", :disabled => true  %>
+                            <%= form.label :Second_round%><br>
+                            <%= form.text_field :second, class: "form-control form-control-lg disabled"%>
+                            <%= form.label :Third_round%><br>
+                            <%= form.text_field :third, class: "form-control form-control-lg disabled", :disabled => true  %>
+                        <%else%>
+                            <%= form.label :First_round%><br>
+                            <%= form.text_field :first, class: "form-control form-control-lg disabled", :disabled => true  %>
+                            <%= form.label :Second_round%><br>
+                            <%= form.text_field :second, class: "form-control form-control-lg disabled", :disabled => true  %>
+                            <%= form.label :Third_round%><br>
+                            <%= form.text_field :third, class: "form-control form-control-lg disabled" %>
+                        <%end%>
+                    <%end%>
+                </div>  
+
+                <div class="form-group mb-2">
+                    <%= form.label :Time%><br>
+                        <%= form.text_field :attend_time, class: "form-control form-control-lg" %>
+                </div>
+
+                <div class="form-group mb-2">
+                    <%= form.label :interview_date%><br>
+                        <%= form.text_field :interview_date, class: "form-control form-control-lg" %>
+                </div>
+
+
+                <div class="form-group mb-2">
+                    <%= form.label :Interviewer_name%><br>
+                        <%= form.text_field :inter, class: "form-control form-control-lg" %>
+                </div>
+
+                <div class="form-group mb-2">
+                    <%= form.label :Zoom_link%><br>
+                        <%= form.text_field :zoom_link, class: "form-control form-control-lg" %>
+                </div>
+
+
+
+                <%= form.submit "Press" %>
+        </div>
+        <% end %>
+
     </div>
-   
-    <div class="form-group mb-2">
-        <%= form.label :Time%><br>
-        <%= form.text_field :attend_time, class: "form-control form-control-lg"%>
     </div>
-
-    <div class="form-group mb-2">
-        <%= form.label :interview_date%><br>
-        <%= form.text_field :interview_date, class: "form-control form-control-lg"%>
-    </div>
-
-  
-
-
-    <div class="form-group mb-2">
-        <%= form.label :Interviewer_name%><br>
-        <%= form.text_field :inter, class: "form-control form-control-lg"%>
-    </div>
-
- 
-   
-  
-    
-  <%= form.submit "Press" %>
-  </div>
-  <% end %>
-  
-  </div>
-  </div>
-  <!--  -->
- <% else%>
-  <%= "sorry invalid user permission"%>
-  <%end%>
+    <!--  -->
+    <% else%>
+        <%= "sorry invalid user permission" %>
+            <%end%>
